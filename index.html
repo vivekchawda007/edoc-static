@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>E-Doc Online</title>
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="E-Doc Online">
+  <meta name="keywords" content="eDoc">
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon and Touch Icons-->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/logo/download.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+  <meta name="msapplication-TileColor" content="#fc4e14">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Page loading styles-->
+  <style>
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all .4s .2s ease-in-out;
+      transition: all .4s .2s ease-in-out;
+      background-color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity .2s ease-in-out;
+      transition: opacity .2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #737491;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: .75rem;
+      vertical-align: text-bottom;
+      border: .15em solid #fc4e14;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: spinner .75s linear infinite;
+      animation: spinner .75s linear infinite;
+    }
+
+    @-webkit-keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <!-- Page loading scripts-->
+  <script>
+    (function () {
+      window.onload = function () {
+        var preloader = document.querySelector('.page-loading');
+        preloader.classList.remove('active');
+        setTimeout(function () {
+          preloader.remove();
+        }, 2000);
+      };
+    })();
+
+  </script>
+  <!-- Vendor Styles-->
+  <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css" />
+  <link rel="stylesheet" media="screen" href="css/custom.css" />
+  <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css" />
+  <link rel="stylesheet" media="screen" href="vendor/lightgallery.js/dist/css/lightgallery.min.css" />
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="css/theme.min.css">
+</head>
+<!-- Body-->
+
+<body>
+  <!-- Page loading spinner-->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div><span>Loading...</span>
+    </div>
+  </div>
+  <main class="page-wrapper">
+    <!-- Sign In Modal-->
+    <div class="modal fade" id="modal-signin" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content border-0">
+          <div class="view show" id="modal-signin-view">
+            <div class="modal-header border-0 bg-dark px-4">
+              <h4 class="modal-title text-light">Try E-Doc Now </h4>
+              <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                aria-label="btn-close "></button>
+            </div>
+            <div class="modal-body px-4">
+              <p class="fs-ms text-muted">Enter email address and try now. .
+              </p>
+              <form class="needs-validation" novalidate>
+                <div class="mb-3">
+                  <div class="input-group"><i
+                      class="ai-mail position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                    <input class="form-control rounded" type="email" placeholder="Email" required> 
+                  </div>
+                </div>
+                <!-- <div class="mb-3">
+                  <div class="input-group"><i
+                      class="ai-lock position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                    <div class="password-toggle w-100">
+                      <input class="form-control" type="password" placeholder="Password" required>
+                      <label class="password-toggle-btn" aria-label="Show/hide password">
+                        <input class="password-toggle-check" type="checkbox"><span
+                          class="password-toggle-indicator"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div> -->
+                <!-- <div class="d-flex justify-content-between align-items-center mb-3 mb-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="keep-signed">
+                    <label class="form-check-label fs-sm" for="keep-signed">Keep me signed in</label>
+                  </div><a class="nav-link-style fs-ms" href="password-recovery.html">Forgot password?</a>
+                </div> -->
+                <button class="btn btn-primary d-block w-100"
+                  onclick=" window.open('http://google.com','_blank')">Redirect to E-Doc</button>
+                <!-- <p class="fs-sm pt-3 mb-0">Don't have an account? <a href='#' class='fw-medium'
+                    data-view='#modal-signup-view'>Sign up</a></p> -->
+              </form>
+            </div>
+          </div>
+          <div class="view" id="modal-signup-view">
+            <div class="modal-header border-0 bg-dark px-4">
+              <h4 class="modal-title text-light">Sign up</h4>
+              <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                aria-label="btn-close"></button>
+            </div>
+            <div class="modal-body px-4">
+              <p class="fs-ms text-muted">Registration takes less than a minute but gives you full control over your
+                orders.</p>
+              <form class="needs-validation" novalidate>
+                <div class="mb-3">
+                  <input class="form-control" type="text" placeholder="Full name" required>
+                </div>
+                <div class="mb-3">
+                  <input class="form-control" type="text" placeholder="Email" required>
+                </div>
+                <div class="mb-3 password-toggle">
+                  <input class="form-control" type="password" placeholder="Password" required>
+                  <label class="password-toggle-btn" aria-label="Show/hide password">
+                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                  </label>
+                </div>
+                <div class="mb-3 password-toggle">
+                  <input class="form-control" type="password" placeholder="Confirm password" required>
+                  <label class="password-toggle-btn" aria-label="Show/hide password">
+                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                  </label>
+                </div>
+                <button class="btn btn-primary d-block w-100" type="submit">Sign up</button>
+                <p class="fs-sm pt-3 mb-0">Already have an account? <a href='#' class='fw-medium'
+                    data-view='#modal-signin-view'>Sign in</a></p>
+              </form>
+            </div>
+          </div>
+          <!-- <div class="modal-body text-center px-4 pt-2 pb-4">
+            <hr class="my-0">
+            <p class="fs-sm fw-medium text-heading pt-4">Or sign in with</p><a
+              class="btn-social bs-facebook bs-lg mx-1 mb-2" href="#"><i class="ai-facebook"></i></a><a
+              class="btn-social bs-twitter bs-lg mx-1 mb-2" href="#"><i class="ai-twitter"></i></a><a
+              class="btn-social bs-instagram bs-lg mx-1 mb-2" href="#"><i class="ai-instagram"></i></a><a
+              class="btn-social bs-google bs-lg mx-1 mb-2" href="#"><i class="ai-google"></i></a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- Navbar (Solid background)-->
+    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+    <header class="header navbar navbar-expand-lg navbar-light bg-light navbar-sticky shadow-lg" data-scroll-header
+      data-fixed-element>
+      <div class="container px-0 px-xl-3">
+        <button class="navbar-toggler ms-n2 me-2" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#primaryMenu"><span class="navbar-toggler-icon"></span></button><a
+          class="navbar-brand flex-shrink-0 order-lg-1 mx-auto ms-lg-0 pe-lg-2 me-lg-4" href="index.html"><img
+            class="d-none d-lg-block" src="img/logo/download.png" alt="EDocOnline" width="153"><img class="d-lg-none"
+            src="img/logo/download.png" alt="EDocOnline" width="58"></a>
+        <div class="d-flex align-items-center order-lg-3 ms-lg-auto">
+          <!-- <a class="nav-link-style fs-sm text-nowrap"
+            href="#modal-signin" data-bs-toggle="modal" data-view="#modal-signin-view"><i
+              class="ai-user fs-xl me-2 align-middle"></i>Sign in</a> -->
+          <a class="btn btn-primary d-block w-100" href="#modal-signin" data-bs-toggle="modal"
+            data-view="#modal-signup-view">Try Now</a>
+        </div>
+        <div class="offcanvas offcanvas-collapse order-lg-2" id="primaryMenu">
+          <div class="offcanvas-header navbar-shadow">
+            <h5 class="mt-1 mb-0">Menu</h5>
+            <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <!-- Menu-->
+            <ul class="navbar-nav">
+              <!-- <li class="nav-item"><a class="nav-link" href="#products">Products</a>
+              </li> -->
+
+              <li class="nav-item dropdown dropdown-mega"><a class="nav-link dropdown-toggle" href="#"
+                  data-bs-toggle="dropdown">Products</a>
+                <div class="dropdown-menu">
+                  <div class="dropdown-column mb-2 mb-lg-0">
+                    <h5 class="dropdown-header">Retrieve</h5><a class="dropdown-item" href="#incomeVerification">Income
+                      Verification</a><a class="dropdown-item" href="#fraudPrevention">Fraud Prevention </a>
+                  </div>
+                  <div class="dropdown-column mb-2 mb-lg-0">
+                    <h5 class="dropdown-header">Insights</h5><a class="dropdown-item" href="#insights">Analysis of risk
+                      indicators </a>
+                  </div>
+                </div>
+              </li>
+
+
+              <li class="nav-item"><a class="nav-link" href="#usecases">Use
+                  cases</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#about">About Us</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#map">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Page content-->
+    <!-- Hero-->
+    <section class="container-fluid px-0 pb-5 pb-md-6">
+      <div class="row g-0 align-items-xl-center">
+        <div class="col-lg-6 col-md-7 text-end order-md-2"><img class="d-inline-block"
+            src="img/demo/business-consulting/hero-img.jpg" alt="Business people" width="945"></div>
+        <div class="col-lg-6 col-md-5 pt-5 pb-3 py-md-5">
+          <div class="mx-auto me-md-5 me-xl-7 ps-3 py-md-3 order-md-1" style="max-width: 516px;">
+            <h1 style="font-size:70px" class="mb-grid-gutter pb-1">Consent, Retrieve and View Data</h1>
+            <p class="callout d-block d-md-none d-lg-block fs-lg text-muted mb-grid-gutter">We are transforming the way
+              financial data is shared and used by businesses involved in vetting financial details of an application to
+              enhance the decision-making process</p>
+            <div class="pt-2"><a class="btn-video btn-video-primary btn-video-sm me-3"
+                href="https://youtu.be/aXVj9tuYoBg" target="_blank"
+                data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;EDocOnline Consulting&lt;/h6&gt;"></a><span
+                class="fs-sm">Get to know us better</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA-->
+
+    <!-- <section class="container py-5 py-md-6 py-lg-7" id="products">
+      <h2 class="text-center pb-2 mb-5">Our Products</h2>
+      <div class="row pt-2">
+        <div class="col-sm-4 mb-grid-gutter pb-1">
+          <div class="mx-auto text-center" style="max-width: 278px;"><img class="d-inline-block mb-3"
+              src="img/demo/software-landing/icons/01.svg" alt="Simple" width="56">
+            <h3 class="h5">Retrieve </h3>
+            <p class="fs-sm mb-0">Access real- time account information to verify income and expenses of customers using
+              Open Banking APIs to get account data, balances, statements and transactions.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4 mb-grid-gutter pb-1">
+          <div class="mx-auto text-center" style="max-width: 278px;"><img class="d-inline-block mb-3"
+              src="img/demo/software-landing/icons/02.svg" alt="Fast" width="56">
+            <h3 class="h5">Account Insights & Analytics</h3>
+            <p class="fs-sm mb-0">Categorised transaction data and actionable insights available through a dashboard
+              showing comprehensive analysis of customer expenditure, recurring payments, affordability assessment,
+              predicted and historical spending.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4 mb-grid-gutter pb-1">
+          <div class="mx-auto text-center" style="max-width: 278px;"><img class="d-inline-block mb-3"
+              src="img/demo/software-landing/icons/03.svg" alt="Organized" width="67">
+            <h3 class="h5">Credit Risk Modelling </h3>
+            <p class="fs-sm mb-0">Leverage on actionable insights and machine learning to predict risk of defaulting on
+              loans.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="container" >
+      <div class="row align-items-center">
+
+        <div class="col-lg-4 col-md-5 order-md-1 bg-position-start-bottom bg-repeat-5 ">
+          <h1 class="mb-2"><b>Retrieve</b></h1>
+          <h3 class="h6 mb-3">Real-time financial data to support your application process</h3>
+          <p class="pb-2 text-center text-md-start">Securely retrieve a snapshot of your customer’s financial history in
+            a structured way. Use Open Banking to retrieve financial data as part of your application to support the
+            following business processes</p>
+
+          <img class="rounded-3 pb-10" src="img/demo/food-blog/someNice.jfif" alt="Amelie">
+        </div>
+        <!-- <div class="col-lg-6 offset-lg-1 col-md-7">
+          <h2 class="mb-2"><b>Product</b> - Retrieve</h2>
+          <h3 class="h6 mb-3">Real-time financial data to support your application process</h3>
+          <p class="mb-4 pb-2 ">Securely retrieve a snapshot of your customer’s financial history in a structured way. Use Open Banking to retrieve financial data as part of your application to support the following business processes</p>
+            
+          <h3 class="h5 mb-3 ">Income Verification</h3>
+          <ul class="list-unstyled mb-5">
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1 ">Verify historical and real-time income ​</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Verify bank statements, account balance and transaction history​</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Validate employment pay, frequency and duration of employment</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Identify non-employment income sources</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Verify any gaps in income to assess income stability or vulnerability</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Assess income trends and highlight reduction in income</span></li>
+            </ul>
+            <h3 class="h5 mb-3 ">Fraud Prevention</h3>
+          <ul class="list-unstyled mb-5">
+            <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Use Open Banking to prevent fraud with Tamper-proof financial data​ ​</span></li>
+            <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Verify income and expenditure patterns​</span></li>
+            <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Bank-level customer verification, biometrics and strong customer authentication (SCA)​</span></li>
+            <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Guarantee source of income and identify suspicious activity</span></li>
+            <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Verify number of outstanding loans, repayment and destination of funds</span></li>
+            </ul>
+        </div> -->
+        <div class="col-lg-8 col-md-7 order-md-1 bg-position-start-bottom bg-repeat-0"
+          style="background-image: url(img/demo/marketing-seo/services/bg-shape.svg);">
+          <div class="mx-auto mx-md-0 ms-xl-2" style="max-width: 1000px;">
+            <div class="row align-items-center">
+
+              <div class="col-sm-6" id="incomeVerification">
+                <div class="bg-light shadow-lg rounded-3 p-4 mb-grid-gutter text-center text-sm-start"><img
+                    class="d-inline-block mb-4 mt-2" src="img/demo/marketing-seo/services/01.svg" alt="Icon"
+                    width="100">
+                  <h2 class="h5 mb-3 ">Income Verification</h2>
+                  <ul class="list-unstyled mb-5">
+                    <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                        class="fw-semibold fs-sm ">Verify historical and real-time income ​</span></li>
+                    <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                        class="fw-semibold fs-sm">Verify bank statements, account balance and transaction
+                        history​</span></li>
+                    <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                        class="fw-semibold fs-sm">Validate employment pay, frequency and duration of employment</span>
+                    </li>
+                    <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                        class="fw-semibold fs-sm">Identify non-employment income sources</span></li>
+                    <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                        class="fw-semibold fs-sm">Verify any gaps in income to assess income stability or
+                        vulnerability</span></li>
+                    <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                        class="fw-semibold fs-sm">Assess income trends and highlight reduction in income</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              
+              <div class="col-sm-6" id="fraudPrevention">
+                <div class="bg-light shadow-lg rounded-3 p-4 mb-grid-gutter text-center text-sm-start"><img
+                    class="d-inline-block mb-4 mt-2" src="img/demo/marketing-seo/services/02.svg" alt="Icon"
+                    width="100">
+                  <h2 class="h5 mb-3 ">Fraud Prevention</h2>
+                  <ul class="list-unstyled mb-5">
+                    <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                        class="fw-semibold fs-sm">Use Open Banking to prevent fraud with Tamper-proof financial data​
+                        ​</span></li>
+                    <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                        class="fw-semibold fs-sm">Verify income and expenditure patterns​</span></li>
+                    <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                        class="fw-semibold fs-sm">Bank-level customer verification, biometrics and strong customer
+                        authentication (SCA)​</span></li>
+                    <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                        class="fw-semibold fs-sm">Guarantee source of income and identify suspicious activity</span>
+                    </li>
+                    <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                        class="fw-semibold fs-sm">Verify number of outstanding loans, repayment and destination of
+                        funds</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="bg-secondary" id="insights">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-4 mt-3 mt-md-0 py-5 py-md-0">
+            <h1 class="text-lg-nowrap pb-2 text-center text-md-start">Insights</h1>
+            <p class="pb-2 text-center text-md-start">Save time and cost manually assessing customer financials by using
+              categorised transaction data and actionable
+              insights available through our dashboard​.</p>
+            <h3 class="h5 mb-3">Comprehensive analysis of risk indicators</h3>
+            <ul class="list-unstyled fs-sm pb-1 d-table mx-auto mx-md-0">
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                  class="fw-semibold ps-1">Customer expenditure, recurring payments​</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                  class="fw-semibold ps-1">Affordability assessment</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                  class="fw-semibold ps-1">Spending patterns​</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                  class="fw-semibold ps-1">Number of outstanding loans and defaults</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                  class="fw-semibold ps-1">Deposit and withdrawal of high cash transactions</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                  class="fw-semibold ps-1">Oversea transactions and frequency</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                  class="fw-semibold ps-1">Bank to Bank transactions to trigger need for an additional bank to be
+                  considered in order to determine full picture of customer financials.</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span
+                  class="fw-semibold ps-1">List of benefit payments to suggest loss of employment or
+                  vulnerability</span></li>
+            </ul>
+            <div class="text-center text-md-start"><a class="fw-medium" href="#">Learn more<i
+                  class="ai-chevron-right fs-xl ms-1 mt-n1 align-middle"></i></a></div>
+          </div>
+          <div class="col-md-8">
+            <div class="parallax ms-auto" style="max-width: 757px;"><img class="d-block"
+                src="img/demo/marketing-seo/about-img/lines.png" alt="Lines">
+              <div class="parallax-layer" style="z-index: 2;" data-depth="0.15"><img
+                  src="img/demo/marketing-seo/about-img/image.png" alt="Image"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- <section class="container" id="insights">
+      <div class="row align-items-center">
+        <div class="col-md-5 mb-md-0 mb-grid-gutter"><img class="rounded-3" src="img/demo/business-consulting/industries/04.jpg"
+            alt="Amelie"></div>
+        <div class="col-lg-6 offset-lg-1 col-md-7">
+          <h2 class="mb-2"><b>Product</b> - Insights</h2>
+          <h3 class="h6 mb-3 text-muted">Some amazing details about product Insights</h3>
+          <p class="mb-4 pb-2 text-muted">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+            praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
+            cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et
+            dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+            <ul class="list-unstyled mb-5">
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Customer expenditure, recurring payments​​ ​​</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Affordability assessment​</span></li>
+              <li class="d-flex align-items-center mb-2"><i class="ai-check-square fs-xl me-2"></i><span class="fw-semibold ps-1">Spending patterns​​</span></li>
+            </ul>
+        </div>
+      </div>
+    </section> -->
+
+
+    <!-- <section class="bg-size-cover bg-secondary py-5 py-md-6 py-lg-7" id="retrive">
+      <h2 class="text-center pb-2 mb-5">Retrive</h2>
+
+      <div class="row pt-2 mx-0">
+        <div class="col-sm-6 mb-grid-gutter pb-1">
+          <div class="mx-auto text-center" style="max-width: 278px;"><img class="d-inline-block mb-3"
+              src="img/demo/software-landing/icons/01.svg" alt="Simple" width="56">
+            <h3 class="h5">Income Verification​</h3>
+            <hr />
+
+            <ul class="list-group">
+              <li class="list-group-item">Verify historical and real-time income ​</li>
+              <li class="list-group-item">Verify bank statements, account balance and transaction history​</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-6 mb-grid-gutter pb-1">
+          <div class="mx-auto text-center" style="max-width: 278px;"><img class="d-inline-block mb-3"
+              src="img/demo/software-landing/icons/02.svg" alt="Fast" width="56">
+            <h3 class="h5">Fraud Prevention ​</h3>
+            <hr />
+            <ul class="list-group">
+              <li class="list-group-item">Use Open Banking to prevent fraud with Tamper-proof financial data​ ​</li>
+              <li class="list-group-item">Verify income and expenditure patterns​</li>
+              <li class="list-group-item">Bank-level customer verification, biometrics and strong customer
+                authentication (SCA)​</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-size-cover bg-secondary py-5 py-md-6 py-lg-7" id="insights">
+      <h2 class="text-center pb-2 mb-5">Insights</h2>
+
+      <div class="row pt-2 mx-0">
+        <div class="col-sm-12 mb-grid-gutter pb-1">
+          <div class="mx-auto text-center" style="max-width: 278px;"><img class="d-inline-block mb-3"
+              src="img/demo/software-landing/icons/01.svg" alt="Simple" width="56">
+            <h3 class="h5">Analysis of risk indicators </h3>
+            <ul class="list-group">
+              <li class="list-group-item">Customer expenditure, recurring payments​​ ​</li>
+              <li class="list-group-item">Affordability assessment​</li>
+              <li class="list-group-item">Spending patterns​</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section> -->
+    <!-- <section class="container px-0 py-5 py-md-6" id="about">
+      <h2 class="text-center mb-3">About E-DocOnline</h2>
+      <div class="row justify-content-center mb-5 pb-2 m-0">
+        <div class="col-xl-6 col-lg-7">
+          <p class="text-center mb-0">E-Doc is a FCA registered <span class="fw-bold">Data Analytics</span> company and
+            authorised Account Information Services Provider (AISP) that uses financial behaviour to measure customer
+            affordability.
+          </p>
+          <p class="text-center mb-0 mt-2">
+            We are transforming the Visa and Lending Application Process by using Regulatory permission via Open Banking
+            to securely provide a snapshot of your financial history to decision makers without the need to upload any
+            document.
+          </p>
+        </div>
+      </div>
+    </section> -->
+    <!-- <section class="row g-0 mt-0" id="about">
+      <div class="col-md-6 bg-size-cover py-7" style="background-image: url(img/demo/booking/services-cover.jpg);">
+        <div class="py-6"></div>
+      </div>
+      <div class="col-md-6 border-top border-bottom px-3 pe-xl-0 ps-lg-5 ps-xl-7">
+        <div class="ms-sm-4 my-2 py-5 my-sm-0 py-sm-6 py-md-7" style="max-width: 495px;">
+          <h2 class="mb-4">About E-DocOnline</h2>
+          <p class="mb-2">E-Doc is a FCA registered <span class="fw-bold">Data Analytics</span> company and
+            authorised Account Information Services Provider (AISP) that uses financial behaviour to measure customer
+            affordability.</p>
+          <p class="">
+            We are transforming the Visa and Lending Application Process by using Regulatory permission via Open Banking
+            to securely provide a snapshot of your financial history to decision makers without the need to upload any
+            document.
+          </p>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Services-->
+    <!-- <section class="bg-secondary py-5 py-md-6 py-lg-7 my-3" id="usecases">
+      <div class="container py-2">
+        <div class="row align-items-center">
+          <div class="col-lg-4 col-md-5 text-center text-md-start mb-5 mb-md-0">
+            <h2 class="mb-3">Use Cases</h2>
+            <p class="text-muted mb-4 pb-2"></p>
+
+          </div>
+          <div class="col-lg-8 col-md-7 bg-position-center bg-repeat-0"
+            style="background-image: url(img/demo/business-consulting/services/bg-shape.svg);">
+            <div class="mx-auto" style="max-width: 610px;">
+              <div class="row align-items-center">
+                <div class="col-sm-6">
+                  <div class="bg-light shadow-lg rounded-3 p-4 mb-grid-gutter text-center text-sm-start"><img
+                      class="d-inline-block mb-4 mt-2" src="img/demo/business-consulting/services/01.svg" alt="Icon"
+                      width="100">
+                    <h3 class="h5 mb-2">Mortgages </h3>
+                    <p class="fs-sm">Quicker and secure way of assessing an applicant's income and expenses required to
+                      process mortgage applications.
+                    </p>
+
+                    <p class="fs-sm">Brokers can increase productivity by reducing reliance on paper based-applications
+                      and exercise of manually verifying paper-based financial details.
+                    </p>
+                  </div>
+                  <div class="bg-light shadow-lg rounded-3 p-4 mb-grid-gutter text-center text-sm-start"><img
+                      class="d-inline-block mb-4 mt-2" src="img/demo/business-consulting/services/02.svg" alt="Icon"
+                      width="100">
+                    <h3 class="h5 mb-2">Lending</h3>
+                    <p class="fs-sm">Make informed credit decisions and affordability assessments using real-time
+                      customer bank data.
+                    </p>
+                    <p class="fs-sm">Lenders reduce their exposure to fraud, automate the decision making process and
+                      increase accuracy of affordability checks.
+                    </p>
+                  </div>
+                  <div class="bg-light shadow-lg rounded-3 p-4 mb-grid-gutter text-center text-sm-start"><img
+                      class="d-inline-block mb-4 mt-2" src="img/demo/business-consulting/services/03.svg" alt="Icon"
+                      width="100">
+                    <h3 class="h5 mb-2">Travel Visa Application </h3>
+                    <p class="fs-sm">Find aute irure dolor in reprehend in voluptate velit esse cillum dolore eu fugiat
+                      nulla pariatur. </p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="bg-light shadow-lg rounded-3 p-4 mb-grid-gutter text-center text-sm-start"><img
+                      class="d-inline-block mb-4 mt-2" src="img/demo/business-consulting/services/04.svg" alt="Icon"
+                      width="100">
+                    <h3 class="h5 mb-2">Trade Finance</h3>
+                    <p class="fs-sm">Leverage on financial data insight and account balance information to make informed
+                      decision on affordability and risk modelling to determine probability of requiring access to
+                      public funds or additional financial support in future.
+                    </p>
+                  </div>
+                  <div class="bg-light shadow-lg rounded-3 p-4 mb-grid-gutter text-center text-sm-start"><img
+                      class="d-inline-block mb-4 mt-2" src="img/demo/business-consulting/services/05.svg" alt="Icon"
+                      width="100">
+                    <h3 class="h5 mb-2">Vetting</h3>
+                    <p class="fs-sm">Find aute irure dolor in reprehend in voluptate velit esse cillum dolore eu fugiat
+                      nulla pariatur. </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section> -->
+
+
+    <section class="py-5 py-md-6 py-lg-7 mb-3" id="usecases">
+      <div class="container py-2">
+        <div class="row align-items-center">
+          <div class="col-lg-12 col-md-12 bg-position-center bg-repeat-0"
+            style="background-image: url(img/demo/business-consulting/services/bg-shape.svg);">
+            <h1 class="mb-3 text-center">Use Cases</h1>
+            <p class="text-muted mb-2 pb-2"></p>
+            <div class="mx-auto">
+              <div class="row">
+                <div class="bg-light shadow-lg rounded-3 p-4 mb-grid-gutter text-center text-sm-start col m-2"><img
+                    class="d-inline-block mb-4 mt-2" src="img/demo/business-consulting/services/01.svg" alt="Icon"
+                    width="100">
+                  <h3 class="h5 mb-2">For Users​ </h3>
+                  <p class="fs-sm">Use Open Banking to retrieve your financial data to support your application
+                    process.​<br />
+                    Why use E-DocOnline​ ?
+                  </p>
+
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Securely provide your financial data from your Bank to registered and
+                      authorized third party​​ ​</li>
+                    <li class="list-group-item">Manage who has access to your financial data​​</li>
+                    <li class="list-group-item">Financial data is only accessible by permitted or approved parties​</li>
+                    <li class="list-group-item">Eliminate manual process of uploading or submitting financial data​</li>
+                    <li class="list-group-item">Reduce risk of unauthorized access to financial data ​​</li>
+                    <li class="list-group-item">Regulated Open Banking framework to share financial data​ ​​</li>
+                    <li class="list-group-item">Bank-level customer verification, biometrics and strong customer
+                      authentication (SCA)​ ​​</li>
+                  </ul>
+                </div>
+                <div class="bg-light shadow-lg rounded-3 p-4 mb-grid-gutter text-center text-sm-start col m-2"><img
+                    class="d-inline-block mb-4 mt-2" src="img/demo/business-consulting/services/02.svg" alt="Icon"
+                    width="100">
+                  <h3 class="h5 mb-2">For Businesses​</h3>
+                  <p class="fs-sm">Use our Dashboard/ API to securely view or retrieve real time financial data and
+                    insights​
+                  </p>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Reduce Staff Costs​ ​</li>
+                    <li class="list-group-item">Reduce Operational/ Maintenance Costs​​​</li>
+                    <li class="list-group-item">Fraud Prevention​</li>
+                    <li class="list-group-item">Tamper-proof financial statement</li>
+                    <li class="list-group-item">View a snapshot of customer’s financial position and risk metrics​ ​​
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+    <section class="bg-secondary py-4 my-4 my-sm-0 py-sm-6 py-md-7" id="faqs">
+      <div class="container py-2">
+        <h1 class="text-center pb-2 mb-5">FAQs</h1>
+        <div class="row pb-2">
+          <div class="col-lg-6">
+            <div class="accordion" id="faq">
+              <div class="accordion-item shadow">
+                <h2 class="accordion-header" id="faq-heading-1">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-1" aria-expanded="false" aria-controls="faq-content-1">What is Open
+                    Banking?</button>
+                </h2>
+                <div class="accordion-collapse collapse" id="faq-content-1" aria-labelledby="faq-heading-1"
+                  data-bs-parent="#faq" style="">
+                  <div class="accordion-body">
+                    <div class="fs-sm">Open Banking is a government-backed technology that enables you to safely and
+                      securely share your financial information with authorised providers. Open Banking was introduced
+                      to
+                      drive innovation in financial services in the UK to help you more easily manage your finances, get
+                      customised deals and products, and save money. Open Banking enables you to use your own financial
+                      information to help your application – it’s just like sending bank statements, but faster, easier
+                      and more secure.​</div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow">
+                <h2 class="accordion-header" id="faq-heading-2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-2" aria-expanded="false" aria-controls="faq-content-2">How does Open
+                    Banking work??</button>
+                </h2>
+                <div class="accordion-collapse collapse" id="faq-content-2" aria-labelledby="faq-heading-2"
+                  data-bs-parent="#faq">
+                  <div class="accordion-body">
+                    <div class="fs-sm">Open Banking technology allows you to share your financial information with your
+                      chosen provider, through authorised companies. Account Information Service Providers (AISPs) are
+                      authorised by the Financial Conduct Authority. E-DocOnline as a regulated AISP, provides an online
+                      process in which you can consent to share specific financial information from your bank and credit
+                      card providers with your chosen financial services company (this could be your lender, mortgage
+                      provider, estate agent, or broker, for example). During the process, your bank will ask you to
+                      login
+                      to your online banking to verify your identity, then ask you to confirm that you’d like them to
+                      share information with E-DocOnline. Your bank only shares the specific financial information you
+                      request with E-DocOnline, and never your login details. You can connect multiple financial
+                      institutions at a time, enabling you to quickly and easily share your financial information - just
+                      as you would upload bank statements. Once you have connected your accounts, E-DocOnline
+                      consolidates
+                      all the information retrieved through Open Banking technology into a usable format for lenders,
+                      brokers, and banks. Only authorised companies can access Open Banking.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow">
+                <h2 class="accordion-header" id="faq-heading-3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-3" aria-expanded="false" aria-controls="faq-content-3">What financial
+                    information is shared in an Open Banking journey?​</button>
+                </h2>
+                <div class="accordion-collapse collapse" id="faq-content-3" aria-labelledby="faq-heading-3"
+                  data-bs-parent="#faq">
+                  <div class="accordion-body">
+                    <div class="fs-sm">When you instruct your bank to share information with E-DocOnline, it’s like
+                      sharing the information you find on your bank statements, but easier, faster and more secure.​
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow">
+                <h2 class="accordion-header" id="faq-heading-4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-4" aria-expanded="false" aria-controls="faq-content-4">What does 90
+                    days
+                    consent mean?​</button>
+                </h2>
+                <div class="accordion-collapse collapse" id="faq-content-4" aria-labelledby="faq-heading-4"
+                  data-bs-parent="#faq">
+                  <div class="accordion-body">
+                    <div class="fs-sm">If you’re asked for 90 days of consent, that means your financial services
+                      provider
+                      has asked E-DocOnline to facilitate your bank securely sharing your financial information via Open
+                      Banking with them today, and for up to the next 90 days. You’re in control - if you’d like to stop
+                      your bank sharing your account history during that 90 day period, you can revoke consent at any
+                      time
+                      by clicking the link in your confirmation email, managing your consent via online banking, or by
+                      getting in touch with E-DocOnline.​</div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow">
+                <h2 class="accordion-header" id="faq-heading-5">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-5" aria-expanded="false" aria-controls="faq-content-5">Who can see my
+                    data​?​</button>
+                </h2>
+                <div class="accordion-collapse collapse" id="faq-content-5" aria-labelledby="faq-heading-5"
+                  data-bs-parent="#faq">
+                  <div class="accordion-body">
+                    <div class="fs-sm">Only E-DocOnline and the lender or company you have granted permission at
+                      E-DocOnline will have access to your financial data. We will always tell you the name of the
+                      company
+                      you will be sharing data with and exactly what data you are sharing. We only share your Open
+                      Banking
+                      data with your explicit consent. ​​</div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow">
+                <h2 class="accordion-header" id="faq-heading-6">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-6" aria-expanded="false" aria-controls="faq-content-6">Can I revoke or
+                    cancel my Open Banking consent?​​</button>
+                </h2>
+                <div class="accordion-collapse collapse" id="faq-content-6" aria-labelledby="faq-heading-6"
+                  data-bs-parent="#faq">
+                  <div class="accordion-body">
+                    <div class="fs-sm">You can revoke access at any point. Your bank keeps a record of what data you’ve
+                      shared and where, and you can revoke access within your online banking at any time. </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow">
+                <h2 class="accordion-header" id="faq-heading-7">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-7" aria-expanded="false" aria-controls="faq-content-7">What financial
+                    data is kept about me?​​</button>
+                </h2>
+                <div class="accordion-collapse collapse" id="faq-content-7" aria-labelledby="faq-heading-7"
+                  data-bs-parent="#faq">
+                  <div class="accordion-body">
+                    <div class="fs-sm">When you ask your bank to share your information with E-DocOnline, we retrieve
+                      and
+                      store the following data from your bank: Your account details (any other name by which you refer
+                      to
+                      this account, your account name, number and sort-code, your account balance, your account
+                      balance),
+                      your account transactions (details of your incoming transactions, details of your incoming
+                      transactions), and your contact details (your address, telephone numbers and email address as held
+                      by your bank/card issuer) </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow">
+                <h2 class="accordion-header" id="faq-heading-8">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-8" aria-expanded="false" aria-controls="faq-content-8">How do I manage
+                    my
+                    consent​?​​</button>
+                </h2>
+                <div class="accordion-collapse collapse" id="faq-content-8" aria-labelledby="faq-heading-8"
+                  data-bs-parent="#faq">
+                  <div class="accordion-body">
+                    <div class="fs-sm">You have the option of choosing to manage your consent and prevent any further
+                      information being shared - you’re in control. In order to manage your consent, you can access your
+                      dashboard to view, revoke, cancel or grant new consent. ​ </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item shadow">
+                <h2 class="accordion-header" id="faq-heading-9">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-9" aria-expanded="false" aria-controls="faq-content-9">How long will my
+                    data be stored​?​​</button>
+                </h2>
+                <div class="accordion-collapse collapse" id="faq-content-9" aria-labelledby="faq-heading- 9"
+                  data-bs-parent="#faq">
+                  <div class="accordion-body">
+                    <div class="fs-sm">E-DocOnline does not store your data for any longer than is necessary, or beyond
+                      the purpose for which the data is processed. As a regulated financial institution data will be
+                      stored for a period of 7 years. This is in line with industry guidelines and also to meet any
+                      legal
+                      and regulatory obligations, such as responding to requests from the Financial Ombudsman Service,
+                      any
+                      queries you may have and any legal claims.​ ​ </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-lg-block col-lg-5 offset-lg-1"><img src="img/demo/booking/illustration.svg"
+              alt="Illustration"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- <section class="bg-gradient position-relative pt-6 pb-5 py-sm-6 m-1" id="about">
+      <div class="position-absolute top-0 start-0 w-100 h-100 bg-size-cover" style="background-image: url(img/demo/booking/bg-pattern01.png);"></div>
+      <div class="position-relative zindex-5 container py-2">
+        <div class="row align-items-center">
+          <div class="col-lg-5 offset-lg-1 order-lg-2 pb-5 pb-lg-0 text-center text-lg-start">
+            <h2 class="text-light">About Us.</h2>
+            <p class="text-light mb-0">E-Doc is a FCA registered <span class="fw-bold">Data Analytics</span> company and
+              authorised Account Information Services Provider (AISP) that uses financial behaviour to measure customer
+              affordability.</p>
+          </div>
+          <div class="col-lg-6 order-lg-1">
+            <div class="row">
+              <div class="col-sm-4 mb-2 pb-4 mb-sm-0 pb-sm-0">
+                <div class="px-2 text-center"><img class="bg-light rounded-circle mb-2" src="img/demo/booking/icons/01.svg" alt="Tickets" width="105">
+                  <p class="fs-sm fw-medium text-light mb-0 pt-1">Easy to manage all expense</p>
+                </div>
+              </div>
+              <div class="col-sm-4 mb-2 pb-4 mb-sm-0 pb-sm-0">
+                <div class="px-2 text-center"><img class="bg-light rounded-circle mb-2" src="img/demo/booking/icons/02.svg" alt="Search" width="105">
+                  <p class="fs-sm fw-medium text-light mb-0 pt-1">Perfect in terms of security</p>
+                </div>
+              </div>
+              <div class="col-sm-4 mb-2 pb-4 mb-sm-0 pb-sm-0">
+                <div class="px-2 text-center"><img class="bg-light rounded-circle mb-2" src="img/demo/booking/icons/03.svg" alt="Flight" width="105">
+                  <p class="fs-sm fw-medium text-light mb-0 pt-1">Easy to use</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+
+    <section class="container pb-5 pt-6 mb-md-2 py-md-7" id="about">
+      <div class="row align-items-center">
+        <div class="col-md-6"><img class="d-block mx-auto" src="img/demo/coworking/illustration01.svg"
+            alt="Illustration"></div>
+        <div class="col-md-6 col-lg-5 offset-lg-1 pt-4 pt-md-0">
+          <h1 class="mt-4 mb-5 text-center text-md-start">About Us</h1>
+          <p class="text-dark mb-0">E-DocOnline is a FCA authorised Account Information Services Provider (AISP) that securely retrieve financial data via Open Banking
+            Framework to provide a snapshot of users financial history to decision makers without the need to upload any document.</p>
+          <br />
+          <div class="row justify-content-center">
+            <div class="col-8 col-sm-4 text-center mb-grid-gutter"><img class="mb-2"
+                src="img/demo/coworking/icons/safety.svg" alt="Free computer" width="46">
+              <h5 class="h6">Safe and Secure</h5>
+            </div>
+            <div class="col-6 col-sm-4 text-center mb-grid-gutter"><img class="mb-2"
+                src="img/demo/coworking/icons/click.svg" alt="Coffee and snacks" width="46">
+              <h5 class="h6">Easy to use</h5>
+            </div>
+            <div class="col-6 col-sm-4 text-center mb-grid-gutter"><img class="mb-2"
+                src="img/demo/coworking/icons/pound.svg" alt="Relax zone" width="46">
+              <h5 class="h6">Financial Inclusion</h5>
+            </div>
+            <div class="col-6 col-sm-4 text-center mb-grid-gutter"><img class="mb-2"
+                src="img/demo/coworking/icons/structure.svg" alt="Private meeting room" width="46">
+              <h5 class="h6">Categorised and structured financial data</h5>
+            </div>
+            <div class="col-6 col-sm-4 text-center mb-grid-gutter"><img class="mb-2"
+                src="img/demo/coworking/icons/dashboard.svg" alt="High-speed internet" width="46">
+              <h5 class="h6">Data Insights via Dashboard or API</h5>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="border-top bg-secondary m-1" id="map">
+      <div class="row g-0 gallery" lg-uid="lg0"><a
+          class="col-lg-6 gallery-item map-popup d-flex flex-columnt justify-content-center align-items-center bg-position-center bg-size-cover py-7 text-center"
+          href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.91476818218!2d-74.11976253858133!3d40.69740344296443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sua!4v1568574342685!5m2!1sen!2sua"
+          data-iframe="true"
+          data-sub-html="<h6 class=&quot;fs-sm text-light&quot;>396 Lillian Blvd, Holbrook, NY 11741</h6>"
+          style="background-image:url(img/pages/contacts/map02.jpg);"><span class="gallery-caption"><i
+              class="ai-maximize-2 fs-xl mt-n1 me-2"></i>Expand the map</span>
+          <div class="d-inline-block py-4 py-md-6"><img src="img/pages/contacts/marker.png" alt="Map marker" width="48">
+          </div>
+        </a>
+        <div class="col-lg-6 px-3 px-lg-5">
+          <div class="pt-5 pb-6 pt-md-6 mx-auto" style="max-width: 720px;">
+            <h2 class="h3 pb-4">Drop us a line</h2>
+            <form class="needs-validation row" novalidate="">
+              <div class="col-sm-6 mb-3 pb-1">
+                <label class="form-label" for="cont-fn">Full name<sup class="text-danger ms-1">*</sup></label>
+                <input class="form-control" type="text" id="cont-fn" placeholder="John Doe" required="">
+                <div class="invalid-feedback">Please enter your full name!</div>
+              </div>
+              <div class="col-sm-6 mb-3 pb-1">
+                <label class="form-label" for="cont-email">Email address<sup class="text-danger ms-1">*</sup></label>
+                <input class="form-control" type="email" id="cont-email" placeholder="j.doe@example.com" required="">
+                <div class="invalid-feedback">Please enter a valid email address!</div>
+              </div>
+              <div class="col-sm-6 mb-3 pb-1">
+                <label class="form-label" for="cont-phone">Phone number</label>
+                <input class="form-control bg-image-0" type="text" id="cont-phone" data-format="custom"
+                  data-delimiter="-" data-blocks="2 4 2 2" placeholder="00-0000-00-00">
+              </div>
+              <div class="col-sm-6 mb-3 pb-1">
+                <label class="form-label" for="cont-subject">Subject</label>
+                <input class="form-control bg-image-0" type="text" id="cont-subject"
+                  placeholder="Title of your message">
+              </div>
+              <div class="col-12 mb-3 pb-1">
+                <label class="form-label" for="cont-message">Message<sup class="text-danger ms-1">*</sup></label>
+                <textarea class="form-control" id="cont-message" rows="4" placeholder="Write your message here"
+                  required=""></textarea>
+                <div class="invalid-feedback">Please write a message!</div>
+              </div>
+              <div class="col-12 pt-2">
+                <button class="btn btn-primary" type="submit">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <section class="bg-secondary" id="map">
+      <div class="container pt-5 pb-6 py-md-7">
+        <h1 class="text-center mb-5">Contact Us</h1>
+        <div class="row">
+          <div class="col-md-6 mb-5 mb-md-0">
+            <form class="needs-validation mb-4 pb-2" novalidate>
+              <div class="input-group mb-3"><i
+                  class="ai-user position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                <input class="form-control rounded" type="text" placeholder="Name" required>
+              </div>
+              <div class="input-group mb-3"><i
+                  class="ai-mail position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                <input class="form-control rounded" type="email" placeholder="Email" required>
+              </div>
+              <div class="mb-3 pb-1">
+                <textarea class="form-control" rows="4" placeholder="Message" required></textarea>
+              </div>
+              <div class="row pt-2">
+                <div class="col-sm-6">
+                  <button class="btn btn-primary d-block w-100" type="submit">Send Request</button>
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-sm-6">
+                <h5>Around office</h5>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-0">5 Admiral Walk,</li>
+                  <li class="mb-0">Tunbridge Wells, Kent,</li>
+                  <li class="mb-0"> United Kingdom, TN2 3XY</li>
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <h5>Collaboration</h5>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-0">+44 7794 440535</li>
+                  <li class="mb-0">contact@edoconline.com</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-5 offset-xl-1 gallery"><a class="gallery-item map-popup border rounded-3"
+              href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.91476818218!2d-74.11976253858133!3d40.69740344296443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sua!4v1568574342685!5m2!1sen!2sua"
+              data-iframe="true"
+              data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;396 Lillian Blvd, Holbrook, NY 11741&lt;/h6&gt;"><img
+                src="img/demo/coworking/map.jpg" alt="Maps"><span class="gallery-caption"><i
+                  class="ai-maximize-2 fs-xl mt-n1 me-2"></i>Expand the map</span>
+              <div class="position-absolute"
+                style="width: 48px; top: 50%; left: 50%; margin-top: -24px; margin-left: -24px;"><img
+                  src="img/pages/contacts/marker.png" alt="Map marker"></div>
+            </a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer bg-dark pt-5 pt-md-6">
+    <div class="container pt-3 pt-md-0">
+      <div class="row pb-3">
+        <div class="col-md-4 mt-n2 pb-3 pb-md-0 mb-4"><a class="d-block mb-3" href="index.html"
+            style="width: 153px;"><img src="img/logo/download.png" alt="EDocOnline"></a>
+          <p class="fs-sm text-light opacity-60 pb-2 pb-sm-3"> Data Analytics company and authorised Account Information
+            Services Provider.</p></i></a><a class="btn-social bs-outline bs-twitter bs-light bs-lg me-2 mb-2"
+            href="#"><i class="ai-twitter"></i></a><a
+            class="btn-social bs-outline bs-instagram bs-light bs-lg me-2 mb-2" href="https://www.instagram.com/edoconline/" target="_blank"><i
+              class="ai-instagram"></i></a><a class="btn-social bs-outline bs-google bs-light bs-lg me-2 mb-2"
+            href="#"><i class="ai-google"></i></a><a class="btn-social bs-outline bs-linkedin bs-light bs-lg me-2 mb-2"
+            href="#"><i class="ai-linkedin"></i></a>
+        </div>
+        <div class="col-md-2 col-sm-4 ms-auto pb-1 mb-4">
+          <!-- <div class="widget widget-light">
+            <h4 class="widget-title">Company</h4>
+            <ul>
+              <li><a class="widget-link" href="#">About</a></li>
+              <li><a class="widget-link" href="#">Careers</a></li>
+              <li><a class="widget-link" href="#">Press</a></li>
+            </ul>
+          </div> -->
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 pb-1 mb-4">
+          <!-- <div class="widget widget-light">
+            <h4 class="widget-title">Communities</h4>
+            <ul>
+              <li><a class="widget-link" href="#">For artists</a></li>
+              <li><a class="widget-link" href="#">Developers</a></li>
+              <li><a class="widget-link" href="#">Brands</a></li>
+              <li><a class="widget-link" href="#">Investors</a></li>
+            </ul>
+          </div> -->
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+          <div class="widget widget-light">
+            <h4 class="widget-title">Our news</h4>
+            <ul>
+              <li><a class="widget-link" href="#">Latest news</a></li>
+              <li><a class="widget-link" href="#">Updates</a></li>
+              <li><a class="widget-link" href="#">Campaigns</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr class="my-0 border-light">
+      <div class="row align-items-center mt-3 py-4">
+        <div class="col-md-6 order-md-2 text-md-end mb-3">
+          <ul class="list-inline fs-sm mb-0">
+            <li class="list-inline-item"><a class="nav-link-style nav-link-light" href="#">Support</a></li>
+            <li class="list-inline-item"><a class="nav-link-style nav-link-light" href="#">Contacts</a></li>
+            <li class="list-inline-item"><a class="nav-link-style nav-link-light" href="#">Terms &amp; Conditions</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6 order-md-1 mb-3">
+          <p class="fs-sm mb-0"><span class="text-light opacity-50 me-1">© All rights reserved.</span><a
+              class="nav-link-style nav-link-light" href="https://createx.studio/" target="_blank" rel="noopener">E-Doc
+              Online</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll data-fixed-element><span
+      class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ai-arrow-up">
+    </i></a>
+  <!-- Vendor scrits: js libraries and plugins-->
+  <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+  <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="vendor/lightgallery.js/dist/js/lightgallery.min.js"></script>
+  <script src="vendor/lg-video.js/dist/lg-video.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Main theme script-->
+  <script src="js/theme.min.js"></script>
+  <script>
+    //smoothscroll
+    $('a.nav-link').on('click', function (e) {
+      $('a').each(function () {
+        $(this).removeClass('active');
+      })
+      $(this).addClass('active');
+    });
+
+
+    $(document).on("scroll", onScroll);
+    function onScroll(event) {
+      var scrollPos = $(document).scrollTop();
+      $('.nav-link').each(function () {
+        if (currentWindowWidth > 1024 && currentWindowWidth < defaultWidth) {
+          percent = (currentWindowWidth * 100) / defaultWidth;
+        }
+        var currLink = $(this);
+        var refElement = $(currLink.attr("href"));
+        if (refElement.position().top <= (scrollPos + (window.innerHeight / 2))) {
+          $('.nav').removeClass("active");
+          currLink.addClass("active");
+        }
+        else {
+          currLink.removeClass("active");
+        }
+      });
+    }
+
+
+  </script>
+</body>
+
+</html>
